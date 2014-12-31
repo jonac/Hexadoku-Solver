@@ -1,15 +1,15 @@
 def checkSudokoSolution(board)
 	# Check all rows, columns and quadrants for duplicates
-	# If we find no duplicates we have a perfect solution
-	if checkRows(board)
+	# If we find no duplicates we have a solution
+	if not checkRows(board)
 		return false
 	end
 	
-	if checkCols(board)
+	if not checkCols(board)
 		return false
 	end
 
-	if checkQuadrants(board)
+	if not checkQuadrants(board)
 		return false
 	end
 
