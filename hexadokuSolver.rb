@@ -17,7 +17,7 @@ class HexadokuSolver
 		changedOne = true
 		
 		while changedOne and not board.isFull?
-
+			# Continue until we find no more singles or the board gets full
 			changedOne = false
 			board.each_with_index do |row, ri|
 				row.each_with_index do |col, ci|
@@ -53,17 +53,11 @@ class HexadokuSolver
 		if board.finished?
 			@@solutions << board
 			print "New Solution found\n"
+			return nil
 		end
-		guesses.each { |e| print HexadokuBoard.getDecodeTable()[e] }
-		print " "+guesses.length.to_s+" "+x.to_s+" "+y.to_s+"\n"
-		board.printGameBoard
-		puts
 		guesses.each do |i|
-			#board.setPos(x,y,i)
-			b2 =board.clone
-			b2.setPos(x,y,i)
-			# print "nextGuess "+HexadokuBoard.getDecodeTable()[i].to_s+" "+x.to_s+" "+y.to_s+"\n"
-			backtrack(b2)
+			board.setPos(x,y,i)
+			backtrack(board.clone)
 
 		end
 		return nil
